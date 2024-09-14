@@ -9,7 +9,8 @@ services:
     ports:
       - "8337:80"
     volumes:
-      - .:/var/www/html
+      - ./runtime:/var/www/html/runtime
+      - ./web/assets:/var/www/html/web/assets
     environment:
       - MONGODB_STRING=mongodb://mongodb:27017/test_db123
     depends_on:
