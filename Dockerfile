@@ -20,22 +20,31 @@ RUN a2enmod rewrite
 # Set the working directory
 WORKDIR /var/www/html
 
+# Install Composer and project dependencies
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --prefer-dist --optimize-autoloader && \
+    composer clear-cache
+
+
+
+
 # Copy Yii2 application code to the container
 COPY . /var/www/html
 
 # Set Apache environment variables
 ENV APACHE_DOCUMENT_ROOT /var/www/html/web
-
-# Configure Apache
 COPY ./docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 
-# Install Composer and project dependencies
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer install
+
+
+
 
 # Set proper permissions for the application
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html && \
+    chown -R www-data:www-data /var/www/html/runtime /var/www/html/web/assets && \
+    chmod -R 775 /var/www/html/runtime /var/www/html/web/assets
 
 # Expose port 80 for the Apache server
 EXPOSE 80
