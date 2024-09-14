@@ -1,68 +1,43 @@
-<p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-    </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
-    <br>
-</p>
-
-Yii 2 Basic Project Template is a skeleton [Yii 2](https://www.yiiframework.com/) application best for
-rapidly creating small projects.
-
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
-
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![build](https://github.com/yiisoft/yii2-app-basic/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-basic/actions?query=workflow%3Abuild)
-
-DIRECTORY STRUCTURE
--------------------
-
-      assets/             contains assets definition
-      commands/           contains console commands (controllers)
-      config/             contains application configurations
-      controllers/        contains Web controller classes
-      mail/               contains view files for e-mails
-      models/             contains model classes
-      runtime/            contains files generated during runtime
-      tests/              contains various tests for the basic application
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
-      web/                contains the entry script and Web resources
-
-
-
-REQUIREMENTS
-------------
-
-The minimum requirement by this project template that your Web server supports PHP 7.4.
-
 
 INSTALLATION
 ------------
 
-### Install via Composer
+# 1. Using Docker
 
-If you do not have [Composer](https://getcomposer.org/), you may install it by following the instructions
-at [getcomposer.org](https://getcomposer.org/doc/00-intro.md#installation-nix).
-
-You can then install this project template using the following command:
-
+Clone this repository and run docker-compose:
 ~~~
-composer create-project --prefer-dist yiisoft/yii2-app-basic basic
+git clone https://github.com/smaiht/google-sheet-parser.git
 ~~~
-
-Now you should be able to access the application through the following URL, assuming `basic` is the directory
-directly under the Web root.
-
+Edit `.env` with your `MONGODB_STRING` and `SERVICE_ACC_JSON_PATH`
+(You have to create google service account and enable google sheets api access, then create a new key and save it as *.json in `/config` folder)
 ~~~
-http://localhost/basic/web/
+cd google-sheet-parser/
+docker-compose up --build
+~~~
+~~~
+Open [http://localhost:8337/](http://localhost:8337/)
 ~~~
 
-### Install from an Archive File
 
+# 2. Using local enviroment
+
+Clone this repository and run docker-compose:
+~~~
+git clone https://github.com/smaiht/google-sheet-parser.git
+~~~
+~~~
+cd google-sheet-parser/
+composer install
+~~~
+Run server
+~~~
+php yii serve
+~~~
+~~~
+Open [http://localhost:8080/](http://localhost:8080/) or whatever link Yii2's gonna give you
+~~~
+
+#### ...    
 Extract the archive file downloaded from [yiiframework.com](https://www.yiiframework.com/download/) to
 a directory named `basic` that is directly under the Web root.
 
