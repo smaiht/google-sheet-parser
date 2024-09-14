@@ -28,10 +28,8 @@ RUN composer install
 ENV APACHE_DOCUMENT_ROOT /var/www/html/web
 COPY ./docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 
-# RUN chown -R www-data:www-data /var/www/html \
-#     && chown -R www-data:www-data /var/www/html/runtime \
-#     && chmod -R 755 /var/www/html \
-#     && chmod -R 775 /var/www/html/runtime /var/www/html/web/assets
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
 
 # Expose port 80 for the Apache server
 EXPOSE 80
