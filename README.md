@@ -1,9 +1,9 @@
 # Google Sheet Parser with Yii2 and MongoDB
 
 ### Overview
-https://github.com/user-attachments/assets/f6ddcac8-a6db-4b79-99a6-56c3ce879221
 Showcases integration of Google Sheets API, Yii2 framework, CLI, and MongoDB for data fetching, management, and analysis in a Docker container.
-![Project Demo](https://github.com/user-attachments/assets/f6ddcac8-a6db-4b79-99a6-56c3ce879221)
+
+https://github.com/user-attachments/assets/f6ddcac8-a6db-4b79-99a6-56c3ce879221
 
 ### Key Features
 - **Google Sheet Integration**: Parses and fetches data from specified table
