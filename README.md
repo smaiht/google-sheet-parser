@@ -51,6 +51,13 @@ Clone the repository and install dependencies:
 ~~~
 git clone https://github.com/smaiht/google-sheet-parser.git
 ~~~
+Edit `.env` file with your `MONGODB_STRING` connection string and `SERVICE_ACC_JSON_PATH` Google service account details:
+- Set MONGODB_STRING to your MongoDB connection URL
+- Set SERVICE_ACC_JSON_PATH to the path of your Google service account JSON file
+
+Note: You need to create a Google service account, enable Google Sheets API access,
+create a new key, and save it as a JSON file in the `/config` folder.
+`Alternatively, contact me for a sample JSON file.`
 ~~~
 cd google-sheet-parser/
 composer install
