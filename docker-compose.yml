@@ -13,8 +13,10 @@ services:
       - ./web/assets:/var/www/html/web/assets
     command: >
       bash -c "
+      echo 'Starting container setup...' &&
       chown -R www-data:www-data /var/www/html/runtime /var/www/html/web/assets &&
       chmod -R 775 /var/www/html/runtime /var/www/html/web/assets &&
+      echo 'Setup complete. Starting Apache...' &&
       apache2-foreground
       "
     environment:
