@@ -22,28 +22,33 @@ WORKDIR /var/www/html
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copy only composer files first
+
+# Копируем только файлы composer
 COPY composer.json composer.lock ./
 
-# Install dependencies
+# Устанавливаем зависимости
 RUN composer install --no-scripts --no-autoloader
 
-# Copy the rest of the application
+# Копируем остальные файлы приложения
 COPY . .
 
-# Generate autoloader
+# Генерируем автозагрузчик
 RUN composer dump-autoload --optimize
+
+# Устанавливаем права доступа
+RUN chown -R www-data:www-data /var/www/html \
+    && find /var/www/html -type d -exec chmod 755 {} + \
+    && find /var/www/html -type f -exec chmod 644 {} + \
+    && chmod -R 775 /var/www/html/runtime /var/www/html/web/assets
+
+
+
+    
 
 # Set Apache environment variables
 ENV APACHE_DOCUMENT_ROOT /var/www/html/web
 COPY ./docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 
-# Set proper permissions for the application
-RUN chown -R www-data:www-data /var/www/html \
-    && find /var/www/html -type d -exec chmod 755 {} \; \
-    && find /var/www/html -type f -exec chmod 644 {} \; \
-    && chown -R www-data:www-data /var/www/html/runtime /var/www/html/web/assets \
-    && chmod -R 775 /var/www/html/runtime /var/www/html/web/assets
 
 # Expose port 80 for the Apache server
 EXPOSE 80
