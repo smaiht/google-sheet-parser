@@ -32,10 +32,6 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/web
 COPY ./docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 
-# Copy and set up entrypoint script
-COPY ./docker/entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
 
 # Expose port 80 for the Apache server
 EXPOSE 80
