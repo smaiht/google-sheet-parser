@@ -36,12 +36,5 @@ COPY ./docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 # Expose port 80 for the Apache server
 EXPOSE 80
 
-# Add entrypoint script
-# COPY ./docker/entrypoint.sh /var/www/html/docker/entrypoint.sh
-
-# # Make sure the script is executable
-# RUN chmod +x /var/www/html/docker/entrypoint.sh
-# ENTRYPOINT ["/var/www/html/docker/entrypoint.sh"]
-
 # This CMD is implicit in the php:apache image, but we'll make it explicit
 CMD ["apache2-foreground"]

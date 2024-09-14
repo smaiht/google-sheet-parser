@@ -11,6 +11,13 @@ services:
     volumes:
       - ./runtime:/var/www/html/runtime
       - ./web/assets:/var/www/html/web/assets
+    command: >
+      bash -c "
+      mkdir -p /var/www/html/runtime /var/www/html/web/assets &&
+      chown -R www-data:www-data /var/www/html/runtime /var/www/html/web/assets &&
+      chmod -R 775 /var/www/html/runtime /var/www/html/web/assets &&
+      apache2-foreground
+      "
     environment:
       - MONGODB_STRING=mongodb://mongodb:27017/test_db123
     depends_on:
