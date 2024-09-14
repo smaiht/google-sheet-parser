@@ -37,7 +37,10 @@ RUN chown -R www-data:www-data /var/www/html \
 EXPOSE 80
 
 # Add entrypoint script
-RUN chmod +x ./docker/entrypoint.sh
+COPY ./docker/entrypoint.sh /var/www/html/docker/entrypoint.sh
+
+# Make sure the script is executable
+RUN chmod +x /var/www/html/docker/entrypoint.sh
 ENTRYPOINT ["/var/www/html/docker/entrypoint.sh"]
 
 # This CMD is implicit in the php:apache image, but we'll make it explicit
