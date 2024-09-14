@@ -35,3 +35,12 @@ RUN chown -R www-data:www-data /var/www/html \
 
 # Expose port 80 for the Apache server
 EXPOSE 80
+
+
+# Add entrypoint script
+COPY ./docker/entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+
+# This CMD is implicit in the php:apache image, but we'll make it explicit
+CMD ["apache2-foreground"]
