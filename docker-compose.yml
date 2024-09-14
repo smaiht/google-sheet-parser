@@ -13,9 +13,7 @@ services:
       - ./web/assets:/var/www/html/web/assets
     command: >
       bash -c "
-      chown -R www-data:www-data /var/www/html &&
       chown -R www-data:www-data /var/www/html/runtime /var/www/html/web/assets &&
-      chmod -R 755 /var/www/html &&
       chmod -R 775 /var/www/html/runtime /var/www/html/web/assets &&
       apache2-foreground
       "
