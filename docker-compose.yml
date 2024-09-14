@@ -8,6 +8,7 @@ services:
     container_name: yii2-app
     ports:
       - "8337:80"
+    user: "www-data"
     volumes:
       - ./runtime:/var/www/html/runtime
       - ./web/assets:/var/www/html/web/assets
