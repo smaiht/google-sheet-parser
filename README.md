@@ -6,7 +6,7 @@ Showcases integration of Google Sheets API, Yii2 framework, CLI, and MongoDB for
 https://github.com/user-attachments/assets/f6ddcac8-a6db-4b79-99a6-56c3ce879221
 
 ### Key Features
-- **Google Sheet Integration**: Parses and fetches data from specified table
+- **Google Sheet Integration**: Parses and fetches data from specified table ( https://docs.google.com/spreadsheets/d/12C0J3jgShF_Uti7mxtIfldME4XficzFRwL2gE2Ek2YI )
 - **MongoDB Storage**: Stores parsed data for quick retrieval and analysis
 - **Dynamic Frontend Display**: Interactive table format
 - **Change Tracking**: 
