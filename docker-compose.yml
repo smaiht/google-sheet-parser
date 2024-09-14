@@ -1,9 +1,28 @@
-version: '2'
+version: '3.8'
+
 services:
-  php:
-    image: yiisoftware/yii2-php:7.4-apache
-    volumes:
-      - ~/.composer-docker/cache:/root/.composer/cache:delegated
-      - ./:/app:delegated
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: yii2-app
     ports:
-      - '8000:80'
+      - "8337:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - MONGODB_STRING=mongodb://mongodb:27017/test_db123
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb
+    ports:
+      - "21337:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
+    driver: local

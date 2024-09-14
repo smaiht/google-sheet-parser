@@ -12,10 +12,8 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
-        'mongodb' => [
-            'class' => '\yii\mongodb\Connection',
-            'dsn' => 'mongodb://localhost:27017/test_db',
-        ],
+        'mongodb' => $db,
+        'db' => $db,
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'DQVKEBS5lchKuhphnIa0tceAcfthwX0K',
@@ -45,11 +43,11 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '' => 'query/category-budget',
             ],
         ],
         'googleSheetService' => [

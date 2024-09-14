@@ -25,13 +25,9 @@ $config = [
                 ],
             ],
         ],
+        'mongodb' => $db,
         'db' => $db,
 
-        
-        'mongodb' => [
-            'class' => '\yii\mongodb\Connection',
-            'dsn' => 'mongodb://localhost:27017/test_db',
-        ],
         'googleSheetService' => [
             'class' => "\app\services\GoogleSheetService"
         ],

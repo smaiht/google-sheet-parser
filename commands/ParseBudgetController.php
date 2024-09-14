@@ -12,7 +12,7 @@ class ParseBudgetController extends Controller
     
     public function actionHello($message = 'hello world')
     {
-        echo $message . "\n";
+        echo $message . $_ENV["TEST"] . "\n";
 
         return ExitCode::OK;
     }

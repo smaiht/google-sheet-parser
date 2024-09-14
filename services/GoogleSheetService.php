@@ -13,8 +13,7 @@ use app\models\Snapshot;
 class GoogleSheetService
 {
     private $service;
-    private $spreadsheetId = '12C0J3jgShF_Uti7mxtIfldME4XficzFRwL2gE2Ek2YI';
-    // private $spreadsheetId = '10En6qNTpYNeY_YFTWJ_3txXzvmOA7UxSCrKfKCFfaRw'; // OG
+
     private $sheetName = 'MA';
     private $range = 'A1:N106';
     private $formatData;
@@ -24,7 +23,7 @@ class GoogleSheetService
     public function __construct()
     {
         $client = new Client();
-        $client->setAuthConfig(Yii::getAlias('@app/config/sheet-parser-435517-2624a8e5587b.json'));
+        $client->setAuthConfig(Yii::getAlias('@app' . $_ENV['SERVICE_ACC_JSON_PATH']));
         $client->setScopes([Sheets::SPREADSHEETS_READONLY]);
         $this->service = new Sheets($client);
     }
@@ -61,14 +60,14 @@ class GoogleSheetService
     {
         // values
         $response = $this->service->spreadsheets_values->get(
-            $this->spreadsheetId,
+            $_ENV['SPREADSHIT_ID'],
             $this->sheetName . '!' . $this->range,
             ['majorDimension' => 'ROWS']
         );
         $values = $response->getValues();
     
         // formattings
-        $response = $this->service->spreadsheets->get($this->spreadsheetId, [
+        $response = $this->service->spreadsheets->get($_ENV['SPREADSHIT_ID'], [
             'ranges' => $this->sheetName . '!' . $this->range,
             'includeGridData' => true,
         ]);

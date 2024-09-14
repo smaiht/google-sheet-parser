@@ -15,9 +15,18 @@ class QueryController extends Controller
     {
         $request = Yii::$app->request;
         
-        $categories = $request->post('categories', []);
-        $products = $request->post('products', []);
-        $months = $request->post('months', []);
+        $categories = array_filter($request->post('categories', []), function($value) {
+            return $value !== '';
+        });
+        
+        $products = array_filter($request->post('products', []), function($value) {
+            return $value !== '';
+        });
+        
+        $months = array_filter($request->post('months', []), function($value) {
+            return $value !== '';
+        });
+        
 
         $allCategories = Category::find()->select(['name'])->column();
         $allProducts = Product::find()->select(['name'])->column();
